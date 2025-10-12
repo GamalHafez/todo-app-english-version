@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A modern Todo App with dark mode, filters, and drag-and-drop support."
+    />
+    <title>Todo App</title>
+    <link rel="shortcut icon" href="./images/todo.png" type="image/png" />
+    <link rel="stylesheet" href="./styles/style.scss" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <h1 class="header__title">Todo</h1>
+        <div class="theme-switcher">
+          <input
+            class="theme-switcher__input"
+            type="checkbox"
+            name="theme"
+            id="theme-toggle"
+            aria-label="Toggle dark mode"
+          />
+          <label
+            class="theme-switcher__label"
+            for="theme-toggle"
+            role="button"
+            tabindex="0"
+          ></label>
+        </div>
+      </header>
+
+      <main class="main">
+        <form class="todo-form">
+          <button class="button todo-form__button"></button>
+          <input
+            class="todo-form__input"
+            type="text"
+            name="new-task"
+            id="new-task"
+            placeholder="Create a new todo..."
+            aria-label="Create a new todo"
+          />
+        </form>
+
+        <p class="error" aria-live="polite"></p>
+
+        <section class="tasks-container">
+          <ul class="tasks"></ul>
+
+          <p class="empty-tasks"></p>
+
+          <footer class="controls">
+            <p class="controls__left">
+              <span class="controls__left-number"></span> items left
+            </p>
+            <div class="controls__filters">
+              <button
+                type="button"
+                data-filter="all"
+                class="button controls__all"
+              >
+                all</button
+              ><button
+                type="button"
+                data-filter="active"
+                class="button controls__active"
+              >
+                active</button
+              ><button
+                type="button"
+                data-filter="completed"
+                class="button controls__completed"
+              >
+                completed
+              </button>
+            </div>
+            <button class="button controls__clear">clear completed</button>
+          </footer>
+        </section>
+      </main>
+      <p class="text">Drag and drop to reorder list</p>
+    </div>
+    <script type="module" src="./index.ts"></script>
+  </body>
+</html>

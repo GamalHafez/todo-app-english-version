@@ -1,0 +1,148 @@
+@mixin circle-container {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-inline-end: auto;
+}
+
+@mixin circle-style {
+  &::before {
+    content: "";
+    width: 2.5rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: var(--box-bg);
+    border: 0.1rem solid var(--task-border-color);
+    transition: border-color var(--base-transition-timing) ease-in-out,
+      background var(--base-transition-timing) ease-in-out;
+  }
+}
+
+@mixin message-image($gap, $url, $width) {
+  display: inline-flex;
+  align-items: center;
+  gap: $gap;
+
+  &::before {
+    content: "";
+    background-image: url($url);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: $width;
+    aspect-ratio: 1/1;
+    max-width: 100%;
+  }
+}
+
+@mixin mobile-version {
+  @media (max-width: 580px) {
+    @content;
+  }
+}
+
+@mixin button-appear {
+  opacity: 1;
+  pointer-events: all;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+}
+
+html {
+  font-size: 62.5%; // 10px = 1rem
+
+  @include mobile-version {
+    font-size: 56%;
+  }
+}
+
+body {
+  font-family: var(--base-font-family);
+  font-size: var(--base-font-size);
+  font-weight: var(--base-font-weight);
+  color: var(--base-text-color);
+  background: var(--page-bg);
+  line-height: 1.4;
+
+  // page background
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: fixed;
+    height: 35vh;
+    width: 100%;
+    transition: opacity var(--base-transition-timing) ease-in-out;
+
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    top: 0;
+    z-index: -1;
+  }
+
+  &::before {
+    opacity: 1;
+    background-image: url("../images/bg-desktop-light.jpg");
+  }
+
+  &::after {
+    opacity: 0;
+    background-image: url("../images/bg-desktop-dark.jpg");
+  }
+
+  :root.dark-on &::before {
+    opacity: 0;
+  }
+
+  :root.dark-on &::after {
+    opacity: 1;
+  }
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin-block: 7rem 2rem;
+}
+
+.main {
+  width: var(--desktop-content-width);
+  margin-block: 3rem 2rem;
+
+  @include mobile-version {
+    width: var(--mobile-content-width);
+  }
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.button {
+  background: transparent;
+  border: none;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.text {
+  color: var(--gray-600);
+  font-size: var(--filters-size);
+  margin-block-start: 2rem;
+
+  @include mobile-version {
+    transform: translateY(350%);
+  }
+}

@@ -1,0 +1,214 @@
+@use "./_base.scss" as *;
+
+.tasks-container {
+  padding: var(--base-padding) var(--base-padding) 1.3rem;
+  background-color: var(--box-bg);
+  border-radius: var(--base-border-radius);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1), -2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__task {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block-end: 2rem;
+    cursor: grab;
+    transition: var(--base-transition-timing) ease-in-out;
+
+    &::before {
+      content: "";
+      bottom: 0;
+      width: var(--desktop-content-width);
+      position: absolute;
+      border-bottom: 0.1rem solid var(--task-border-color);
+
+      @include mobile-version {
+        width: var(--mobile-content-width);
+      }
+    }
+
+    &:hover .tasks__delete {
+      @include button-appear;
+    }
+
+    &.dragging {
+      cursor: grabbing;
+    }
+
+    &.dragging .tasks__text {
+      color: var(--active-button-color);
+    }
+
+    &.dragging::before {
+      border-bottom: 0.2rem solid var(--active-button-color);
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity var(--base-transition-timing) ease-in-out;
+
+    &.delete-popup--active {
+      opacity: 0;
+      max-height: 0;
+      max-width: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
+
+  &__toggle {
+    @include circle-container;
+  }
+
+  &__checkbox {
+    display: none;
+
+    &:checked ~ .tasks__text {
+      position: relative;
+      color: var(--task-completed);
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 0.1rem;
+        background: var(--task-completed);
+        transform: translateY(-50%);
+      }
+    }
+
+    &:checked ~ .tasks__circle::before {
+      background: var(--linear-gradient);
+      border: none;
+    }
+
+    &:checked ~ .tasks__circle::after {
+      opacity: 1;
+    }
+  }
+
+  &__text {
+    color: var(--input-color);
+    cursor: pointer;
+    transition: var(--base-transition-timing) ease-in-out;
+  }
+
+  &__circle {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    @include circle-style;
+
+    &::after {
+      content: "";
+      position: absolute;
+      background-image: url("../images/icon-check.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 1.2rem;
+      aspect-ratio: 1/1;
+      opacity: 0;
+      transition: opacity var(--base-transition-timing) ease-in-out;
+    }
+
+    &:hover::before,
+    .tasks__toggle:has(.tasks__text:hover) &::before {
+      border-color: var(--circle-hover-color);
+    }
+  }
+
+  &__delete {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--base-transition-timing) ease-in-out;
+
+    @include mobile-version {
+      @include button-appear;
+    }
+  }
+}
+
+.empty-tasks {
+  font-weight: var(--bolder-font-weight);
+  color: var(--active-button-color);
+  margin-block-end: var(--base-padding);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-start: 1.7rem;
+
+  &__left,
+  &__clear {
+    font-size: var(--items-left-size);
+    color: var(--gray-600);
+  }
+
+  &__filters {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    font-size: var(--filters-size);
+
+    @include mobile-version {
+      justify-content: center;
+      width: var(--mobile-content-width);
+      background: var(--box-bg);
+      border-radius: var(--base-border-radius);
+      padding: 1.5rem var(--base-padding);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 150%);
+    }
+  }
+
+  [data-filter] {
+    color: var(--filters-color);
+    font-weight: var(--bold-font-weight);
+    transition: color var(--base-transition-timing) ease-in-out,
+      font-weight var(--base-transition-timing) ease-in-out;
+
+    &:hover {
+      color: var(--filters-hover);
+    }
+  }
+
+  &__clear {
+    font-weight: var(--medium-font-weight);
+    transition: var(--base-transition-timing) ease-in-out;
+    &:hover {
+      color: var(--clear-button-hover);
+    }
+
+    &.active-button {
+      color: var(--clear-pop-up);
+      border-bottom: 0.2rem solid var(--clear-pop-up);
+    }
+  }
+
+  [data-filter].active-button {
+    color: var(--active-button-color);
+    font-weight: var(--bolder-font-weight);
+    border-bottom: 0.2rem solid var(--active-button-color);
+  }
+}

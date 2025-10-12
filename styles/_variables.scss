@@ -1,0 +1,65 @@
+:root {
+  // Base Layout:
+  --desktop-content-width: 53rem;
+  --mobile-content-width: 33rem;
+  --base-padding: 3rem;
+  --base-border-radius: 0.5rem;
+  --base-transition-timing: 0.3s;
+
+  // Typography:
+  --base-font-family: "Josefin Sans", sans-serif;
+  --base-font-weight: 400;
+  --medium-font-weight: 500;
+  --bold-font-weight: 600;
+  --bolder-font-weight: 700;
+
+  // Font Sizes:
+  --error-font-size: 1.4rem;
+  --items-left-size: 1.5rem;
+  --filters-size: 1.6rem;
+  --base-font-size: 1.8rem;
+  --empty-message-size: 2rem;
+  --page-title-size: 4rem;
+
+  // unchanged colors:
+  --base-text-color: hsl(235, 19%, 35%);
+  --page-title-color: hsl(0, 0%, 98%);
+  --active-button-color: rgb(45, 97, 171);
+  --filters-color: hsl(235, 16%, 43%);
+  --error-text-color: hsl(280, 87%, 65%);
+  --delete-popup-hover: hsl(0, 84%, 71%);
+  --delete-popup-custom-color: hsl(235, 84%, 71%);
+  --clear-pop-up: hsl(342, 96%, 58%);
+  --linear-gradient: linear-gradient(
+    to bottom right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+
+  // changed colors:
+  --page-bg: hsl(0, 0%, 98%);
+  --box-bg: hsl(0, 0%, 98%);
+  --task-completed: hsl(233, 11%, 84%);
+  --gray-600: hsl(236, 9%, 61%);
+  --filters-hover: hsl(235, 21%, 11%);
+  --clear-button-hover: hsl(237, 14%, 26%);
+  --task-border-color: hsl(236, 33%, 92%);
+  --task-border: hsl(237, 52%, 35%);
+  --error-box-bg: hsl(235, 24%, 19%);
+  --input-color: hsl(235, 24%, 19%);
+  --circle-hover-color: hsl(280, 87%, 65%);
+
+  // Dark Mode:
+  &.dark-on {
+    --page-bg: hsl(235, 21%, 11%);
+    --box-bg: hsl(235, 24%, 19%);
+    --task-completed: hsl(235, 16%, 43%);
+    --gray-600: hsl(235, 16%, 43%);
+    --filters-hover: hsl(236, 33%, 92%);
+    --clear-button-hover: hsl(236, 9%, 61%);
+    --task-border-color: hsl(237, 14%, 26%);
+    --error-box-bg: hsl(279, 76%, 7%);
+    --input-color: hsl(236, 33%, 92%);
+    --circle-hover-color: hsl(192, 77%, 35%);
+  }
+}

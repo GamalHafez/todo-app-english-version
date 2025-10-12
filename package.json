@@ -1,0 +1,27 @@
+{
+  "name": "todo-app-english-version",
+  "version": "1.0.0",
+  "description": "A responsive Todo App built with TypeScript, SCSS, and Vite.",
+  "license": "ISC",
+  "author": "Gamal Hafez",
+  "homepage": "https://gamalhafez.github.io/todo-app-english-version",
+  "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext .ts,.tsx",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react": "^7.37.5",
+    "gh-pages": "^6.3.0",
+    "globals": "^16.4.0",
+    "sass": "^1.93.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.7"
+  }
+}

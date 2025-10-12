@@ -1,0 +1,75 @@
+@use "./_base.scss" as *;
+
+.delete-popup {
+  padding-block: 1rem;
+  color: var(--input-color);
+
+  opacity: 0;
+  width: 0;
+  max-height: 0;
+  pointer-events: none;
+  overflow: hidden;
+
+  transition: max-height var(--base-transition-timing) ease-in-out,
+    opacity var(--base-transition-timing) ease-in-out;
+
+  &.delete-popup--active {
+    max-height: 10rem;
+    width: 100%;
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &__message {
+    @include message-image(
+      $gap: 1rem,
+      $url: "../images/popup-message.png",
+      $width: 2.3rem
+    );
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: 1rem;
+    padding: 0rem 0.7rem 0.3rem;
+
+    border-bottom: solid 0.2rem var(--delete-popup-custom-color);
+    border-left: solid 0.2rem var(--delete-popup-custom-color);
+  }
+
+  &__task {
+    padding-inline-start: 0.3rem;
+    color: var(--delete-popup-custom-color);
+  }
+
+  &__status {
+    margin-inline-start: 0.5rem;
+    font-size: var(--items-left-size);
+    color: var(--gray-600);
+
+    &::before {
+      content: "- ";
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: flex-end;
+  }
+
+  &__clear {
+    color: var(--delete-popup-custom-color);
+    font-weight: var(--bolder-font-weight);
+  }
+
+  &__clear,
+  &__cancel {
+    transition: color var(--base-transition-timing) ease-in-out;
+
+    &:hover {
+      color: var(--delete-popup-hover);
+    }
+  }
+}

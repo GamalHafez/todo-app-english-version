@@ -1,0 +1,77 @@
+@use "./_base.scss" as *;
+
+.header {
+  width: var(--desktop-content-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include mobile-version {
+    width: var(--mobile-content-width);
+  }
+
+  &__title {
+    font-size: var(--page-title-size);
+    color: var(--page-title-color);
+    font-weight: var(--bolder-font-weight);
+    letter-spacing: 1.5rem;
+    text-transform: uppercase;
+
+    @include mobile-version {
+      letter-spacing: 1rem;
+    }
+  }
+}
+
+.theme-switcher {
+  position: relative;
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+
+    &:checked + .theme-switcher__label::before {
+      opacity: 1;
+    }
+
+    &:checked + .theme-switcher__label::after {
+      opacity: 0;
+    }
+  }
+
+  &__label {
+    position: relative;
+    display: inline-block;
+    width: 2.5rem;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    transition: var(--base-transition-timing) ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      inset: 0;
+      transition: opacity var(--base-transition-timing) ease-in-out;
+    }
+
+    &::before {
+      opacity: 0;
+      background-image: url("../images/icon-sun.svg");
+    }
+
+    &::after {
+      opacity: 1;
+      background-image: url("../images/icon-moon.svg");
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@use "./_base.scss" as *;
+
+.todo-form {
+  @include circle-container;
+  position: relative;
+
+  padding: 1.7rem var(--base-padding);
+
+  background-color: var(--box-bg);
+  border-radius: var(--base-border-radius);
+  transition: 0.1s ease-in-out;
+
+  &:has(&__input:focus) {
+    border-bottom: 0.2rem solid var(--clear-button-hover);
+  }
+
+  &__button {
+    @include circle-container;
+    @include circle-style;
+  }
+
+  &__input {
+    background-color: var(--box-bg);
+    color: var(--input-color);
+    outline: 0;
+    border: 0;
+    width: 100%;
+  }
+}
+
+.error {
+  @include message-image(
+    $gap: 0.8rem,
+    $url: "../images/message.png",
+    $width: 2.5rem
+  );
+
+  opacity: 0;
+  width: auto;
+
+  font-size: var(--error-font-size);
+  color: var(--error-text-color);
+  background: var(--error-box-bg);
+
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--base-border-radius);
+  transition: opacity var(--base-transition-timing) ease-in-out,
+    margin var(--base-transition-timing) ease-in-out;
+
+  &.error-active {
+    opacity: 1;
+    margin-block-end: var(--base-padding);
+  }
+}
