@@ -12,7 +12,7 @@
               <label role="button" tabindex="0" class="tasks__text" for="task-${t}">${e}</label>
             </div>
             <button class="button tasks__delete" aria-label="Delete task">
-              <img src="./images/icon-cross.svg" alt="" />
+              <img src="./assets/icon-cross.svg" alt="" />
             </button>
           </div>
 
